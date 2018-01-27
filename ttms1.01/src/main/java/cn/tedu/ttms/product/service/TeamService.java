@@ -5,18 +5,18 @@ import java.util.Map;
 
 import cn.tedu.ttms.product.entity.Team;
 /**
- * ÍÅÄ¿ÒµÎñ±íÏÖ²ã½Ó¿Ú
+ * å›¢ç›®ä¸šåŠ¡è¡¨ç°å±‚æ¥å£
  * @author zhoup
  *
  */
 public interface TeamService {
 	/**
-	 * ²éÑ¯È«²¿ÍÅÄ¿ĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨å›¢ç›®ä¿¡æ¯
 	 * @return
 	 */
 	List<Team> queryAllTeam();
 	/**
-	 * ·ÖÒ³²éÑ¯
+	 * åˆ†é¡µæŸ¥è¯¢
 	 * @param startIndex
 	 * @param pageCurrent
 	 * @return
@@ -24,32 +24,32 @@ public interface TeamService {
 	Map<String, Object> queryAllTeamsByPage(String projectId,String valid,int pageCurrent);
 	
 	/**
-	 * ÉèÖÃÍÅÆôÓÃ×´Ì¬
+	 * è®¾ç½®å›¢å¯ç”¨çŠ¶æ€
 	 * @param valid
 	 */
 	void updateValid(int valid,String id);
 	
 	/**
-	 * ĞÂÔöÍÅĞÅÏ¢
+	 * æ–°å¢å›¢ä¿¡æ¯
 	 * @param team
 	 */
 	void saveTeams(Team team);
 	
 	/**
-	 * ĞŞ¸ÄÍÅĞÅÏ¢
+	 * ä¿®æ”¹å›¢ä¿¡æ¯
 	 * @param team
 	 */
 	void updateTeams(Team team);
 	
 	/**
-	 * ¸ù¾İid²éÕÒÍÅĞÅÏ¢
+	 * æ ¹æ®idæŸ¥æ‰¾å›¢ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	Team queryTeamById(int id);
 	
 	/**
-	 * ²éÑ¯ËùÓĞÏîÄ¿Ãû
+	 * æŸ¥è¯¢æ‰€æœ‰é¡¹ç›®å
 	 * @return
 	 */
 	List<Object> queryAllProjectsName();

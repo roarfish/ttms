@@ -3,7 +3,7 @@ package cn.tedu.ttms.product.entity;
 import java.io.Serializable;
 import java.util.Date;
 /**
- * Ëù·â×°ÍÅµÄÏîÄ¿ĞÅÏ¢
+ * æ‰€å°è£…å›¢çš„é¡¹ç›®ä¿¡æ¯
  * @author zhoup
  *
  */
@@ -12,15 +12,15 @@ public class Team implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 7361107991130539917L;
-	//ÍÅÄ¿id
+	//å›¢ç›®id
 	private Integer id;
-	//ÍÅÃû
+	//å›¢å
 	private String name;
-	//ËùÊôÏîÄ¿id
+	//æ‰€å±é¡¹ç›®id
 	private Integer projectId;
-	//ËùÊôÏîÄ¿Ãû³Æ
+	//æ‰€å±é¡¹ç›®åç§°
 	private String projectName;
-	//ÆôÓÃ×´Ì¬
+	//å¯ç”¨çŠ¶æ€
 	private Integer valid;
 	public Integer getProjectId() {
 		return projectId;
@@ -28,15 +28,15 @@ public class Team implements Serializable{
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
 	}
-	//ÏêÏ¸ÃèÊö
+	//è¯¦ç»†æè¿°
 	private String note;
-	//´´½¨Ê±¼ä
+	//åˆ›å»ºæ—¶é—´
 	private Date createdTime;
-	//ĞŞ¸ÄÊ±¼ä
+	//ä¿®æ”¹æ—¶é—´
 	private Date modifiedTime;
-	//´´½¨Õß
+	//åˆ›å»ºè€…
 	private String createdUser;
-	//ĞŞ¸ÄÕß
+	//ä¿®æ”¹è€…
 	private String modifiedUser;
 	public Integer getId() {
 		return id;

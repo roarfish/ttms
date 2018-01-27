@@ -15,13 +15,13 @@ import cn.tedu.ttms.product.service.TeamService;
 public class TeamController {
 	
 	/**
-	 * ×¢ÈëÊµÏÖµÄÄÚÈİ
+	 * æ³¨å…¥å®ç°çš„å†…å®¹
 	 */
 	@Resource
 	private TeamService teamservice;
 	
 	/**
-	 * ¼ÓÔØÍÅÄ¿ĞÅÏ¢Õ¹Ê¾Ò³Ãæ
+	 * åŠ è½½å›¢ç›®ä¿¡æ¯å±•ç¤ºé¡µé¢
 	 * @return
 	 */
 	@RequestMapping("listUI")
@@ -30,7 +30,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ¼ÓÔØÍÅÄ¿ĞÅÏ¢±à¼­Ò³Ãæ
+	 * åŠ è½½å›¢ç›®ä¿¡æ¯ç¼–è¾‘é¡µé¢
 	 * @return
 	 */
 	@RequestMapping("editUI")
@@ -39,7 +39,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ²éÑ¯È«²¿ÍÅÄ¿ĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨å›¢ç›®ä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("doQueryAllTeams")
@@ -49,7 +49,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ·ÖÒ³²éÑ¯
+	 * åˆ†é¡µæŸ¥è¯¢
 	 * @return
 	 */
 	@RequestMapping("doQueryAllTeasByPage")
@@ -60,7 +60,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ÉèÖÃÍÅÆôÓÃ×´Ì¬
+	 * è®¾ç½®å›¢å¯ç”¨çŠ¶æ€
 	 * @param valid
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ĞÂÔöÍÅĞÅÏ¢
+	 * æ–°å¢å›¢ä¿¡æ¯
 	 * @param team
 	 * @return
 	 */
@@ -87,7 +87,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ĞŞ¸ÄÍÅĞÅÏ¢
+	 * ä¿®æ”¹å›¢ä¿¡æ¯
 	 * @param team
 	 * @return
 	 */
@@ -99,7 +99,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ¸ù¾İid²éÕÒÍÅĞÅÏ¢
+	 * æ ¹æ®idæŸ¥æ‰¾å›¢ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
@@ -110,7 +110,7 @@ public class TeamController {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞÏîÄ¿Ãû
+	 * æŸ¥è¯¢æ‰€æœ‰é¡¹ç›®å
 	 * @return
 	 */
 	@RequestMapping("doQueryAllProjectName")

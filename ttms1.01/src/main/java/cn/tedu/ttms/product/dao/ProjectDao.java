@@ -6,22 +6,22 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.tedu.ttms.product.entity.Project;
 /**
- * ºó¶Ë³Ö¾Ã²ã
+ * åç«¯æŒä¹…å±‚
  * @author zhoup
  *
  */
 public interface ProjectDao {
 	/**
-	 * ²éÑ¯È«²¿ÏîÄ¿ĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨é¡¹ç›®ä¿¡æ¯
 	 * @return
 	 */
 	List<Object> queryAllProject();
 	/**
-	 * ·ÖÒ³²éÑ¯
-	 * @param name ÏîÄ¿Ãû
-	 * @param valid ÆôÓÃ×´Ì¬
-	 * @param startIndex ¿ªÊ¼¸öÊı
-	 * @param pageSize Ò³Ãæ×î´ó¸öÊı
+	 * åˆ†é¡µæŸ¥è¯¢
+	 * @param name é¡¹ç›®å
+	 * @param valid å¯ç”¨çŠ¶æ€
+	 * @param startIndex å¼€å§‹ä¸ªæ•°
+	 * @param pageSize é¡µé¢æœ€å¤§ä¸ªæ•°
 	 * @return
 	 */
 	List<Project> queryProjectByPage(
@@ -30,31 +30,31 @@ public interface ProjectDao {
 			@Param("startIndex")int startIndex,
 			@Param("pageSize")int pageSize);
 	/**
-	 * ²éÑ¯×Ü¼ÇÂ¼Êı
-	 * @param name ÏîÄ¿Ãû
-	 * @param valid ÆôÓÃ×´Ì¬
+	 * æŸ¥è¯¢æ€»è®°å½•æ•°
+	 * @param name é¡¹ç›®å
+	 * @param valid å¯ç”¨çŠ¶æ€
 	 * @return
 	 */
 	int queryRowCount(
 			@Param("name")String name,
 			@Param("valid")String valid );
 	/**
-	 * ĞÂÔöÏîÄ¿
-	 * @param project ·â×°µÄĞÂÔöÏîÄ¿ĞÅÏ¢
+	 * æ–°å¢é¡¹ç›®
+	 * @param project å°è£…çš„æ–°å¢é¡¹ç›®ä¿¡æ¯
 	 */
 	void addProject(Project project);
 	/**
-	 * ¸ù¾İid²éÑ¯ÏîÄ¿ĞÅÏ¢
+	 * æ ¹æ®idæŸ¥è¯¢é¡¹ç›®ä¿¡æ¯
 	 * @return
 	 */
 	Project queryProjectById(int id);
 	/**
-	 * ¸üĞÂÏîÄ¿
-	 * @param project ·â×°µÄĞŞ¸ÄÏîÄ¿ĞÅÏ¢
+	 * æ›´æ–°é¡¹ç›®
+	 * @param project å°è£…çš„ä¿®æ”¹é¡¹ç›®ä¿¡æ¯
 	 */
 	void updateProject(Project project);
 	/**
-	 * ĞŞ¸ÄÏîÄ¿ÆôÓÃ×´Ì¬
+	 * ä¿®æ”¹é¡¹ç›®å¯ç”¨çŠ¶æ€
 	 * @param valid
 	 * @param id
 	 */

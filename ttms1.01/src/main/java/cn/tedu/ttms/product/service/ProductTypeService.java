@@ -8,36 +8,36 @@ import cn.tedu.ttms.product.entity.ProductType;
 public interface ProductTypeService {
 	
 	/**
-	 * 查询分类信息
+	 * 鏌ヨ鍒嗙被淇℃伅
 	 * @return
 	 */
 	List<Map<String,Object>> findObjects();
 	
 	/**
-	 * 删除节点信息
+	 * 鍒犻櫎鑺傜偣淇℃伅
 	 * @param id
 	 */
 	void deleteObject(int id);
 	
 	/**
-	 * 查询分类节点信息,在客户端以ztree形式进行展示
+	 * 鏌ヨ鍒嗙被鑺傜偣淇℃伅,鍦ㄥ鎴风浠tree褰㈠紡杩涜灞曠ず
 	 * @return
 	 */
 	List<Map<String,Object>> findTreeObjects();
 	
 	/**
-	 * 新增产品信息
+	 * 鏂板浜у搧淇℃伅
 	 */
 	void saveType(ProductType product);
 	
 	/**
-	 * 修改产品信息
+	 * 淇敼浜у搧淇℃伅
 	 * @param product
 	 */
 	void updateType(ProductType product);
 	
 	/**
-	 * 根据ID查询产品信息
+	 * 鏍规嵁ID鏌ヨ浜у搧淇℃伅
 	 * @param id
 	 * @return
 	 */

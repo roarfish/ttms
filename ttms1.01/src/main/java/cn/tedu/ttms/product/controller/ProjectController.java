@@ -13,7 +13,7 @@ import cn.tedu.ttms.common.web.JsonResult;
 import cn.tedu.ttms.product.entity.Project;
 import cn.tedu.ttms.product.service.ProjectService;
 /**
- * Ò³Ãæ¿ØÖÆ²ã
+ * é¡µé¢æ§åˆ¶å±‚
  * @author zhoup
  *
  */
@@ -21,12 +21,12 @@ import cn.tedu.ttms.product.service.ProjectService;
 @RequestMapping("/project/")
 public class ProjectController {
 	/**
-	 * ×¢ÈëÊµÏ°·½·¨
+	 * æ³¨å…¥å®ä¹ æ–¹æ³•
 	 */
 	@Resource
 	private ProjectService projectservice;
 	/**
-	 * Ö÷Ò³Ãæ
+	 * ä¸»é¡µé¢
 	 * @return
 	 */
 	@RequestMapping("listUI")
@@ -34,7 +34,7 @@ public class ProjectController {
 		return "product/project_list";
 	}
 	/**
-	 * µ¯³ö±à¼­Ò³Ãæ
+	 * å¼¹å‡ºç¼–è¾‘é¡µé¢
 	 * @return
 	 */
 	@RequestMapping("editUI")
@@ -43,7 +43,7 @@ public class ProjectController {
 	}
 	
 	/**
-	 * ²éÑ¯È«²¿ProjectĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨Projectä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("doQueryAllProject")
@@ -54,8 +54,8 @@ public class ProjectController {
 	}
 	
 	/**
-	 * ·ÖÒ³²éÑ¯ProjectĞÅÏ¢
-	 * @param pageobject ·â×°µÄ·ÖÒ³¶ÔÏó
+	 * åˆ†é¡µæŸ¥è¯¢Projectä¿¡æ¯
+	 * @param pageobject å°è£…çš„åˆ†é¡µå¯¹è±¡
 	 * @return
 	 */
 	@RequestMapping("doQueryPeojectByPage")
@@ -66,8 +66,8 @@ public class ProjectController {
 	}
 	
 	/**
-	 * ĞÂÔöÏîÄ¿
-	 * @param project ·â×°µÄĞÂÔöÏîÄ¿ĞÅÏ¢
+	 * æ–°å¢é¡¹ç›®
+	 * @param project å°è£…çš„æ–°å¢é¡¹ç›®ä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("doAddProject")
@@ -82,8 +82,8 @@ public class ProjectController {
 	int x=0;
 	int y=0;
 	/**
-	 * ¸üĞÂÏîÄ¿
-	 * @param project ·â×°µÄĞŞ¸ÄÏîÄ¿ĞÅÏ¢
+	 * æ›´æ–°é¡¹ç›®
+	 * @param project å°è£…çš„ä¿®æ”¹é¡¹ç›®ä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("doUpdateProject")
@@ -96,7 +96,7 @@ public class ProjectController {
 		return new JsonResult();
 	}
 	/**
-	 * ¸ù¾İid²éÑ¯ÏîÄ¿ĞÅÏ¢
+	 * æ ¹æ®idæŸ¥è¯¢é¡¹ç›®ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
@@ -107,7 +107,7 @@ public class ProjectController {
 		return new JsonResult(project);
 	}
 	/**
-	 * ĞŞ¸ÄÏîÄ¿ÆôÓÃ×´Ì¬
+	 * ä¿®æ”¹é¡¹ç›®å¯ç”¨çŠ¶æ€
 	 * @return
 	 */
 	@RequestMapping("doSetValid")

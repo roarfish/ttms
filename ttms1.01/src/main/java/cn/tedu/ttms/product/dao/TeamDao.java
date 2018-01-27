@@ -7,20 +7,20 @@ import org.apache.ibatis.annotations.Param;
 import cn.tedu.ttms.product.entity.Team;
 
 /**
- * ÍÅÄ¿¿ØÖÆ²ã
+ * å›¢ç›®æ§åˆ¶å±‚
  * @author zhoup
  *
  */
 public interface TeamDao {
 	
 	/**
-	 * ²éÑ¯È«²¿ÍÅÄ¿ĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨å›¢ç›®ä¿¡æ¯
 	 * @return
 	 */
 	List<Team> queryAllTeam();
 	
 	/**
-	 * ·ÖÒ³²éÑ¯
+	 * åˆ†é¡µæŸ¥è¯¢
 	 * @param startIndex
 	 * @param pageCurrent
 	 * @return
@@ -33,7 +33,7 @@ public interface TeamDao {
 			);
 	
 	/**
-	 * ²éÑ¯ÍÅÄ¿ĞÅÏ¢ÊıÁ¿
+	 * æŸ¥è¯¢å›¢ç›®ä¿¡æ¯æ•°é‡
 	 * @return
 	 */
 	int queryTeamCount(
@@ -42,7 +42,7 @@ public interface TeamDao {
 			);
 	
 	/**
-	 * ÉèÖÃÍÅÆôÓÃ×´Ì¬
+	 * è®¾ç½®å›¢å¯ç”¨çŠ¶æ€
 	 * @param valid
 	 */
 	void updateValid(
@@ -50,19 +50,19 @@ public interface TeamDao {
 			@Param("id") String id);
 	
 	/**
-	 * Ñ¡ÖĞÍÅĞÅÏ¢
+	 * é€‰ä¸­å›¢ä¿¡æ¯
 	 * @param team
 	 */
 	void doSaveTeams(Team team);
 	
 	/**
-	 * ĞŞ¸ÄÍÅĞÅÏ¢
+	 * ä¿®æ”¹å›¢ä¿¡æ¯
 	 * @param team
 	 */
 	void doUpdateTeams(Team team);
 	
 	/**
-	 * ¸ù¾İid²éÕÒÍÅĞÅÏ¢
+	 * æ ¹æ®idæŸ¥æ‰¾å›¢ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */

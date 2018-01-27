@@ -6,43 +6,43 @@ import java.util.Map;
 import cn.tedu.ttms.product.entity.ProductType;
 
 /**
- * ·ÖÀàĞÅÏ¢¹ÜÀí³Ö¾Ã²ã
+ * åˆ†ç±»ä¿¡æ¯ç®¡ç†æŒä¹…å±‚
  * @author zhoup
  *
  */
 public interface ProductTypeDao {
 	
 	/**
-	 * ²éÑ¯·ÖÀàĞÅÏ¢
+	 * æŸ¥è¯¢åˆ†ç±»ä¿¡æ¯
 	 * @return
 	 */
 	List<Map<String,Object>> findObjects();
 	
 	/**
-	 * É¾³ı½ÚµãĞÅÏ¢
+	 * åˆ é™¤èŠ‚ç‚¹ä¿¡æ¯
 	 * @param id
 	 */
 	void deleteObject(int id);
 	
 	/**
-	 * ²éÑ¯·ÖÀà½ÚµãĞÅÏ¢,ÔÚ¿Í»§¶ËÒÔztreeĞÎÊ½½øĞĞÕ¹Ê¾
+	 * æŸ¥è¯¢åˆ†ç±»èŠ‚ç‚¹ä¿¡æ¯,åœ¨å®¢æˆ·ç«¯ä»¥ztreeå½¢å¼è¿›è¡Œå±•ç¤º
 	 * @return
 	 */
 	List<Map<String,Object>> findTreeObjects();
 	
 	/**
-	 * ĞÂÔö²úÆ·ĞÅÏ¢
+	 * æ–°å¢äº§å“ä¿¡æ¯
 	 */
 	void saveType(ProductType product);
 	
 	/**
-	 * ĞŞ¸Ä²úÆ·ĞÅÏ¢
+	 * ä¿®æ”¹äº§å“ä¿¡æ¯
 	 * @param product
 	 */
 	void updateType(ProductType product);
 	
 	/**
-	 * ¸ù¾İID²éÑ¯²úÆ·ĞÅÏ¢
+	 * æ ¹æ®IDæŸ¥è¯¢äº§å“ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */

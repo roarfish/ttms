@@ -13,19 +13,19 @@ import cn.tedu.ttms.product.dao.ProjectDao;
 import cn.tedu.ttms.product.entity.Project;
 import cn.tedu.ttms.product.service.ProjectService;
 /**
- * ±íÏÖÊµÏÖ²ã
+ * è¡¨ç°å®ç°å±‚
  * @author zhoup
  *
  */
 @Service
 public class ProjectServiceImpl implements ProjectService {
 	/**
-	 * ×¢Èë³Ö¾Ã²ã
+	 * æ³¨å…¥æŒä¹…å±‚
 	 */
 	@Resource
 	private ProjectDao dao;
 	/**
-	 * ²éÑ¯È«²¿ÏîÄ¿ĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨é¡¹ç›®ä¿¡æ¯
 	 */
 	@Override
 	public List<Object> queryAllProject() {
@@ -33,7 +33,7 @@ public class ProjectServiceImpl implements ProjectService {
 ;		return list;
 	}
 	/**
-	 * ·ÖÒ³²éÑ¯
+	 * åˆ†é¡µæŸ¥è¯¢
 	 */
 	@Override
 	public Map<String, Object> queryProjectByPage(String name,String valid,int pageCurrent) {
@@ -50,14 +50,14 @@ public class ProjectServiceImpl implements ProjectService {
 		return map;
 	}
 	/**
-	 * Ìí¼ÓÏîÄ¿
+	 * æ·»åŠ é¡¹ç›®
 	 */
 	@Override
 	public void addProject(Project project) {
 		dao.addProject(project);
 	}
 	/**
-	 * ¸ù¾İID²éÑ¯ÏîÄ¿ĞÅÏ¢
+	 * æ ¹æ®IDæŸ¥è¯¢é¡¹ç›®ä¿¡æ¯
 	 */
 	@Override
 	public Project queryProjectById(int id) {
@@ -65,14 +65,14 @@ public class ProjectServiceImpl implements ProjectService {
 		return project;
 	}
 	/**
-	 * ¸üĞÂÏîÄ¿ĞÅÏ¢
+	 * æ›´æ–°é¡¹ç›®ä¿¡æ¯
 	 */
 	@Override
 	public void updateProject(Project project) {
 		dao.updateProject(project);
 	}
 	/**
-	 * ¸üĞÂÏîÄ¿ÆôÓÃ×´Ì¬
+	 * æ›´æ–°é¡¹ç›®å¯ç”¨çŠ¶æ€
 	 */
 	@Override
 	public void updateProject_valid(int valid, String id) {

@@ -7,26 +7,26 @@ import cn.tedu.ttms.attachment.entity.Attachment;
 public interface AttachmentDao {
 	
 	/**
-	 * 查询全部附件信息
+	 * 鏌ヨ鍏ㄩ儴闄勪欢淇℃伅
 	 * @return
 	 */
 	List<Attachment> queryAllAttachment();
 	
 	/**
-	 * 根据ID查询附件信息
+	 * 鏍规嵁ID鏌ヨ闄勪欢淇℃伅
 	 * @return
 	 */
 	Attachment queryAttachmentById(Integer id);
 	
 	/**
-	 * 附件上传
+	 * 闄勪欢涓婁紶
 	 * @param attachment
 	 * @return
 	 */
 	int saveAttachment(Attachment attachment);
 	
 	/**
-	 * 根据附件摘要查询附件信息
+	 * 鏍规嵁闄勪欢鎽樿鏌ヨ闄勪欢淇℃伅
 	 * @param fileDisgest
 	 * @return
 	 */

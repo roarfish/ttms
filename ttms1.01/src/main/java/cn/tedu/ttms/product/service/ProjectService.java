@@ -6,42 +6,42 @@ import java.util.Map;
 import cn.tedu.ttms.product.entity.Project;
 
 /**
- * ±íÏÖ²ã
+ * è¡¨ç°å±‚
  * @author zhoup
  *
  */
 public interface ProjectService {
 	/**
-	 * ²éÑ¯È«²¿ÏîÄ¿ĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨é¡¹ç›®ä¿¡æ¯
 	 * @return
 	 */
 	List<Object> queryAllProject();
 	/**
-	 * ·ÖÒ³²éÑ¯
-	 * @param name Ä£ºı²éÑ¯µÄÃû³Æ
-	 * @param valid ÆôÓÃ×´Ì¬
-	 * @param pageCurrent Ä¿±êÒ³Êı
+	 * åˆ†é¡µæŸ¥è¯¢
+	 * @param name æ¨¡ç³ŠæŸ¥è¯¢çš„åç§°
+	 * @param valid å¯ç”¨çŠ¶æ€
+	 * @param pageCurrent ç›®æ ‡é¡µæ•°
 	 * @return
 	 */
 	Map<String, Object> queryProjectByPage(String name,String valid,int pageCurrent);
 	/**
-	 * ĞÂÔöÏîÄ¿
-	 * @param project ·â×°µÄÏîÄ¿ĞÅÏ¢
+	 * æ–°å¢é¡¹ç›®
+	 * @param project å°è£…çš„é¡¹ç›®ä¿¡æ¯
 	 */
 	void addProject(Project project);
 	/**
-	 * ¸ù¾İid²éÑ¯ÏîÄ¿ĞÅÏ¢
+	 * æ ¹æ®idæŸ¥è¯¢é¡¹ç›®ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	Project queryProjectById(int id);
 	/**
-	 * ¸üĞÂÏîÄ¿
-	 * @param project ·â×°µÄĞŞ¸ÄÏîÄ¿ĞÅÏ¢
+	 * æ›´æ–°é¡¹ç›®
+	 * @param project å°è£…çš„ä¿®æ”¹é¡¹ç›®ä¿¡æ¯
 	 */
 	void updateProject(Project project);
 	/**
-	 * ĞŞ¸ÄÏîÄ¿ÆôÓÃ×´Ì¬
+	 * ä¿®æ”¹é¡¹ç›®å¯ç”¨çŠ¶æ€
 	 * @param valid
 	 * @param id
 	 */

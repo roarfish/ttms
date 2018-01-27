@@ -19,7 +19,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
 
 	/**
-	 * 查询全部节点信息
+	 * 鏌ヨ鍏ㄩ儴鑺傜偣淇℃伅
 	 * @return
 	 */
 	@Override
@@ -29,7 +29,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	/**
-	 * 删除节点信息
+	 * 鍒犻櫎鑺傜偣淇℃伅
 	 * @param id
 	 * @return
 	 */
@@ -40,7 +40,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	
 	/**
 	 * 
-	 * 查询分类节点信息,在客户端以ztree形式进行展示
+	 * 鏌ヨ鍒嗙被鑺傜偣淇℃伅,鍦ㄥ鎴风浠tree褰㈠紡杩涜灞曠ず
 	 */
 	@Override
 	public List<Map<String, Object>> findTreeObjects() {
@@ -48,7 +48,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	/**
-	 * 新增产品信息
+	 * 鏂板浜у搧淇℃伅
 	 */
 	@Override
 	public void saveType(ProductType product) {
@@ -56,7 +56,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	/**
-	 * 修改产品信息
+	 * 淇敼浜у搧淇℃伅
 	 * @param product
 	 */
 	@Override
@@ -65,7 +65,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	/**
-	 * 根据ID查询产品信息
+	 * 鏍规嵁ID鏌ヨ浜у搧淇℃伅
 	 * @param id
 	 * @return
 	 */

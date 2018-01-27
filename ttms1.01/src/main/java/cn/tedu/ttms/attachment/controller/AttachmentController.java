@@ -32,7 +32,7 @@ public class AttachmentController {
 	}
 	
 	/**
-	 * 查询全部附件信息
+	 * 鏌ヨ鍏ㄩ儴闄勪欢淇℃伅
 	 * @return
 	 */
 	@RequestMapping("doQueryAllAttachment")
@@ -42,7 +42,7 @@ public class AttachmentController {
 	}
 	
 	/**
-	 * 附件下载
+	 * 闄勪欢涓嬭浇
 	 * @param id
 	 * @param response
 	 * @return
@@ -60,7 +60,7 @@ public class AttachmentController {
 	}
 	
 	/**
-	 * 附件上传
+	 * 闄勪欢涓婁紶
 	 * @return
 	 */
 	@RequestMapping("doUpload")

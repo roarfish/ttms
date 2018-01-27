@@ -2,27 +2,23 @@ package cn.tedu.ttms.product.entity;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import cn.tedu.ttms.common.web.JsonDateTypeConvert;
-
-/**ÏîÄ¿ĞÅÏ¢ÊµÌå¶ÔÏó:
- * ¶ÔÓ¦µÄ±í:tms_projects
+/**é¡¹ç›®ä¿¡æ¯å®ä½“å¯¹è±¡:
+ * å¯¹åº”çš„è¡¨:tms_projects
  */
 public class Project {
-	/**ÏîÄ¿id,¶ÔÓ¦±íÖĞµÄÖ÷¼üÖµ*/
+	/**é¡¹ç›®id,å¯¹åº”è¡¨ä¸­çš„ä¸»é”®å€¼*/
 	private Integer id;
-	/**ÏîÄ¿Ãû³Æ*/
+	/**é¡¹ç›®åç§°*/
 	private String name;
-	/**ÏîÄ¿±àºÅ*/
+	/**é¡¹ç›®ç¼–å·*/
 	private String code;
-	/**¿ªÊ¼ÈÕÆÚ*/
+	/**å¼€å§‹æ—¥æœŸ*/
 	private String  beginDate;
-	/**½áÊøÈÕÆÚ*/
+	/**ç»“æŸæ—¥æœŸ*/
 	private String  endDate;
-	/**ÓĞĞ§*/
+	/**æœ‰æ•ˆ*/
 	private Integer valid=1;
-	/**±¸×¢*/
+	/**å¤‡æ³¨*/
 	private String note;
 	public String getBeginDate() {
 		return beginDate==null?"":beginDate;
@@ -36,13 +32,13 @@ public class Project {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	/**´´½¨Ê±¼ä*/
+	/**åˆ›å»ºæ—¶é—´*/
 	private Date createdTime;
-	/**ĞŞ¸ÄÊ±¼ä*/
+	/**ä¿®æ”¹æ—¶é—´*/
 	private Date modifiedTime;
-	/**´´½¨ÓÃ»§*/
+	/**åˆ›å»ºç”¨æˆ·*/
 	private String createdUser;
-	/**ĞŞ¸ÄÓÃ»§*/
+	/**ä¿®æ”¹ç”¨æˆ·*/
 	private String modifiedUser;
 	public Integer getId() {
 		return id;

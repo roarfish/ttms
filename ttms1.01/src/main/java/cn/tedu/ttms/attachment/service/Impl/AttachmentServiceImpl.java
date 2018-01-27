@@ -25,57 +25,54 @@ public class AttachmentServiceImpl implements AttachmentService {
 	private AttachmentDao dao;
 
 	/**
-	 * ²éÑ¯È«²¿¸½¼şĞÅÏ¢
+	 * æŸ¥è¯¢å…¨éƒ¨é™„ä»¶ä¿¡æ¯
 	 */
-	@Override
 	public List<Attachment> queryAllAttachment() {
 		return dao.queryAllAttachment();
 	}
 
 	/**
-	 * ¸ù¾İID²éÑ¯¸½¼şĞÅÏ¢
+	 * æ ¹æ®IDæŸ¥è¯¢é™„ä»¶ä¿¡æ¯
 	 */
-	@Override
 	public Attachment queryAttachmentById(Integer id) {
 		if(id==null){
-			throw new ServiceException("ÇëÖÁÉÙÑ¡ÔñÒ»¸öÎÄ¼ş½øĞĞ²Ù×÷");
+			throw new ServiceException("è¯·è‡³å°‘é€‰æ‹©ä¸€ä¸ªæ–‡ä»¶è¿›è¡Œæ“ä½œ");
 		}
 		Attachment a=dao.queryAttachmentById(id);
 		if(a==null){
-			throw new ServiceException("Ã»ÓĞÕÒµ½¶ÔÓ¦µÄÎÄ¼ş!");
+			throw new ServiceException("æ²¡æœ‰æ‰¾åˆ°å¯¹åº”çš„æ–‡ä»¶!");
 		}
 		return a;
 	}
 
 	/**
-	 * ¸½¼şÉÏ´«
+	 * é™„ä»¶ä¸Šä¼ 
 	 */
-	@Override
 	public void saveAttachment(String title,MultipartFile mFile) {
-		//ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ
+		//éªŒè¯å‚æ•°æœ‰æ•ˆæ€§
 		if(title==null || title.trim().length()==0)
-			throw new ServiceException("ÇëÊäÈë¸½¼şÃû³Æ!");
+			throw new ServiceException("è¯·è¾“å…¥é™„ä»¶åç§°!");
 		if(mFile==null)
-			throw new ServiceException("ÇëÑ¡Ôñ¸½¼ş½øĞĞÉÏ´«!");
+			throw new ServiceException("è¯·é€‰æ‹©é™„ä»¶è¿›è¡Œä¸Šä¼ !");
 		if(mFile.isEmpty())
-			throw new ServiceException("ÉÏ´«¸½¼ş²»ÄÜÎª¿Õ!");
+			throw new ServiceException("ä¸Šä¼ é™„ä»¶ä¸èƒ½ä¸ºç©º!");
 		
 		String fileDisgest=null;
 		byte[] buf=null;
-		//¶Ô¸½¼ş½øĞĞMD5¼ÓÃÜ
+		//å¯¹é™„ä»¶è¿›è¡ŒMD5åŠ å¯†
 		try {
 			buf=mFile.getBytes();
 			fileDisgest=DigestUtils.md5DigestAsHex(buf);
 			System.out.println("fileDisgest="+fileDisgest);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ServiceException("ÎÄ¼şÕªÒª´´½¨Ê§°Ü");
+			throw new ServiceException("æ–‡ä»¶æ‘˜è¦åˆ›å»ºå¤±è´¥");
 		}
-		//ÑéÖ¤¸½¼şÊÇ·ñÉÏ´«¹ı
+		//éªŒè¯é™„ä»¶æ˜¯å¦ä¸Šä¼ è¿‡
 		Attachment a=dao.queryAttachmentByFileDisgest(fileDisgest);
 		if(a!=null)
-			throw new ServiceException("¸½¼şÒÑÉÏ´«,²»ÄÜÔÙ´ÎÉÏ´«");
-		//¹¹½¨¸½¼şÉÏ´«Â·¾¶
+			throw new ServiceException("é™„ä»¶å·²ä¸Šä¼ ,ä¸èƒ½å†æ¬¡ä¸Šä¼ ");
+		//æ„å»ºé™„ä»¶ä¸Šä¼ è·¯å¾„
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd");
 		String dateDir=sdf.format(new Date());
 		String baseDir="F:/Java_note/TestFile/";
@@ -83,31 +80,31 @@ public class AttachmentServiceImpl implements AttachmentService {
 		if(!uploadDir.exists()){
 			uploadDir.mkdirs();
 		}
-		//¹¹½¨ĞÂµÄ¸½¼şÃû
+		//æ„å»ºæ–°çš„é™„ä»¶å
 		String srcFileName=mFile.getOriginalFilename();
 		String destFileName=UUID.randomUUID().toString()+"."+FilenameUtils.getExtension(srcFileName);
-		//´´½¨ÉÏ´«µÄÎÄ¼ş¶ÔÏó
+		//åˆ›å»ºä¸Šä¼ çš„æ–‡ä»¶å¯¹è±¡
 		File file=new File(uploadDir, destFileName);
-		//ÊµÏÖ¸½¼şµÄÉÏ´«
+		//å®ç°é™„ä»¶çš„ä¸Šä¼ 
 		try {
-			//ÊµÖÊÊÇ¸½¼şµÄ¸´ÖÆ
+			//å®è´¨æ˜¯é™„ä»¶çš„å¤åˆ¶
 			mFile.transferTo(file);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ServiceException("ÎÄ¼şÉÏ´«Ê§°Ü!");
+			throw new ServiceException("æ–‡ä»¶ä¸Šä¼ å¤±è´¥!");
 		}
-		//½«¸½¼şĞÅÏ¢Ğ´ÈëÊı¾İ¿â
+		//å°†é™„ä»¶ä¿¡æ¯å†™å…¥æ•°æ®åº“
 		Attachment attach=new Attachment();
 		attach.setFileName(mFile.getOriginalFilename());
 		attach.setTitle(title);
 		attach.setContentType(mFile.getContentType());
 		attach.setFileDisgest(fileDisgest);
 		attach.setFilePath(file.getAbsolutePath());
-		attach.setAthType(1);//ÔİÇÒÃ»ÓÃµ½
-		attach.setBelongId(1);//ÔİÇÒÃ»ÓÃµ½
+		attach.setAthType(1);//æš‚ä¸”æ²¡ç”¨åˆ°
+		attach.setBelongId(1);//æš‚ä¸”æ²¡ç”¨åˆ°
 		int save=dao.saveAttachment(attach);
 		if(save<0){
-			throw new ServiceException("ÉÏ´«Ê§°Ü!");
+			throw new ServiceException("ä¸Šä¼ å¤±è´¥!");
 		}
 	}
 }

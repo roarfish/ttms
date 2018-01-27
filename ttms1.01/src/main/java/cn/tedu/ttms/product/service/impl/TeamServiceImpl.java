@@ -14,14 +14,14 @@ import cn.tedu.ttms.product.dao.TeamDao;
 import cn.tedu.ttms.product.entity.Team;
 import cn.tedu.ttms.product.service.TeamService;
 /**
- * ÍÅÄ¿ÒµÎñÊµÏÖ²ã
+ * å›¢ç›®ä¸šåŠ¡å®ç°å±‚
  * @author zhoup
  *
  */
 @Service
 public class TeamServiceImpl implements TeamService {
 	/**
-	 * ×¢Èë
+	 * æ³¨å…¥
 	 */
 	@Resource
 	private TeamDao dao;
@@ -29,7 +29,7 @@ public class TeamServiceImpl implements TeamService {
 	@Resource
 	private ProjectDao prodao;
 	/**
-	 * È«²¿ÍÅÄ¿ĞÅÏ¢
+	 * å…¨éƒ¨å›¢ç›®ä¿¡æ¯
 	 */
 	@Override
 	public List<Team> queryAllTeam() {
@@ -37,7 +37,7 @@ public class TeamServiceImpl implements TeamService {
 		return list;
 	}
 	/**
-	 * ·ÖÒ³²éÑ¯
+	 * åˆ†é¡µæŸ¥è¯¢
 	 */
 	@Override
 	public Map<String, Object> queryAllTeamsByPage(String projectId,String valid,int pageCurrent) {
@@ -54,35 +54,35 @@ public class TeamServiceImpl implements TeamService {
 		return map;
 	}
 	/**
-	 * ÉèÖÃÍÅÆôÓÃ×´Ì¬
+	 * è®¾ç½®å›¢å¯ç”¨çŠ¶æ€
 	 */
 	@Override
 	public void updateValid(int valid,String id) {
 		dao.updateValid(valid ,id);
 	}
 	/**
-	 * ĞÂÔöÍÅĞÅÏ¢
+	 * æ–°å¢å›¢ä¿¡æ¯
 	 */
 	@Override
 	public void saveTeams(Team team) {
 		dao.doSaveTeams(team);
 	}
 	/**
-	 * ĞŞ¸ÄÍÅĞÅÏ¢
+	 * ä¿®æ”¹å›¢ä¿¡æ¯
 	 */
 	@Override
 	public void updateTeams(Team team) {
 		dao.doUpdateTeams(team);
 	}
 	/**
-	 * ¸ù¾İid²éÕÒÍÅĞÅÏ¢
+	 * æ ¹æ®idæŸ¥æ‰¾å›¢ä¿¡æ¯
 	 */
 	@Override
 	public Team queryTeamById(int id) {
 		return dao.queryTeamById(id);
 	}
 	/**
-	 * ²éÑ¯ËùÓĞÏîÄ¿Ãû
+	 * æŸ¥è¯¢æ‰€æœ‰é¡¹ç›®å
 	 */
 	@Override
 	public List<Object> queryAllProjectsName() {
