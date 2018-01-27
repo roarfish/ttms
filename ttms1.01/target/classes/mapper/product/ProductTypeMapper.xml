@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.ttms.product.dao.ProductTypeDao">
+	<!-- 查询全部节点信息 -->
+	<select id="findObjects" resultType="map">
+		select t.*,ts.name parentName from tms_classes t left join tms_classes ts on t.parentId=ts.id
+	</select>
+	<!-- 删除节点信息 -->
+	<delete id="deleteObject">
+		delete from tms_classes where id=#{id}
+	</delete>
+	 <!-- 查询分类节点信息,在客户端以ztree形式进行展示 -->
+	<select id="findTreeObjects" resultType="map">
+		select id,parentId,name from tms_classes
+	</select>
+	<!-- 新增产品类型 -->
+	<insert id="saveType" parameterType="product">
+		insert into tms_classes (
+			name,
+			parentId,
+			sort,
+			note
+		)
+		values(
+			#{name},
+			#{parentId},
+			#{sort},
+			#{note}
+		)
+	</insert>
+	<!-- 修改产品类型信息 -->
+	<update id="updateType" parameterType="product">
+		update tms_classes set
+			name=#{name},
+			parentId=#{parentId},
+			sort=#{sort},
+			note=#{note}
+		where id=#{id}
+	</update>
+	<!-- 根据ID查询产品信息 -->
+	<select id="findTypeById" resultType="map">
+		select t.*,ts.name parentName from tms_classes t left join tms_classes ts on t.parentId=ts.id where t.id=#{id}
+	</select>
+</mapper>

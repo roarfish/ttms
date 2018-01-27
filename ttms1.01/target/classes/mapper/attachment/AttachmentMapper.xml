@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.ttms.attachment.dao.AttachmentDao">
+	<!-- 查询全部附件信息 -->
+	<select id="queryAllAttachment" resultType="attachment">
+		select * from tms_attachements
+	</select>
+	<!-- 根据ID查询附件信息 -->
+	<select id="queryAttachmentById" resultType="attachment">
+		select * from tms_attachements where id=#{id}
+	</select>
+	<!-- 附件上传 -->
+	<insert id="saveAttachment" parameterType="attachment">
+		insert into tms_attachements(
+	      title,
+	      fileName,
+	      contentType,
+	      filePath,
+	      fileDisgest,
+	      athType,
+	      belongId,
+	      createdUser,
+	      modifiedUser,
+	      createdTime,
+	      modifiedTime
+	      )values(
+	      #{title},
+	      #{fileName},
+	      #{contentType},
+	      #{filePath},
+	      #{fileDisgest},
+	      #{athType},
+	      #{belongId},
+	      #{createdUser},
+	      #{modifiedUser},
+	      NOW(),
+	      NOW()
+	      );
+	</insert>
+	<!-- 根据附件摘要查询附件信息 -->
+	<select id="queryAttachmentByFileDisgest" resultType="attachment">
+		select * from tms_attachements where fileDisgest=#{fileDisgest}
+	</select>
+</mapper>

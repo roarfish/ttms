@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.ttms.product.dao.ProjectDao">
+	<sql id="findObjectWhere">
+		<where>
+			<if test='name!=null and name!=""'>
+				name like concat("%",#{name},"%")
+			</if>
+			<if test='valid!=null and valid!=""'>
+				and valid=#{valid}
+			</if>
+		</where>
+	</sql>
+	<!-- 查询全部Project信息 -->
+	<select id="queryAllProject" resultType="project">
+		select * from tms_projects
+	</select>
+	<!-- 分页查询Project -->
+	<select id="queryProjectByPage" resultType="project">
+		select * from tms_projects
+		<include refid="findObjectWhere"/>
+		order by createdTime desc limit #{startIndex},#{pageSize}
+	</select>
+	<!-- 查询总记录数 -->
+	<select id="queryRowCount" resultType="java.lang.Integer">
+		select count(*) from tms_projects
+		<include refid="findObjectWhere"/>
+	</select>
+	<!-- 新增项目信息 -->
+	<insert id="addProject" parameterType="project">
+		insert into tms_projects(
+	       name,
+	       code,
+	        <if test="beginDate!=null and beginDate!=''">
+	       		 beginDate,
+	       </if>
+	       <if test="endDate!=null and endDate!=''">
+	       		endDate,
+	       </if>
+	       valid,
+	       note,
+	       createdTime,
+	       modifiedTime,
+	       createdUser,
+	       modifiedUser)
+		values(
+	       #{name},
+	       #{code},
+	       <if test="beginDate!=null and beginDate!=''">
+	       		#{beginDate},
+	       </if>
+	       <if test="endDate!=null and endDate!=''">
+	       		#{endDate},
+	       </if> 
+	       #{valid},
+	       #{note},
+	       NOW(),
+	       NOW(),
+	       #{createdUser},
+	       #{modifiedUser}
+		)
+	</insert>
+	<!-- 根据id查询项目信息 -->
+	<select id="queryProjectById" resultType="project">
+		select * from tms_projects where id=#{id}
+	</select>
+	<!-- 修改项目信息 -->
+	<update id="updateProject" parameterType="project">
+		update tms_projects set
+		   name=#{name},
+		   code=#{code},
+		   <if test="beginDate!=''">
+	       		 beginDate=#{beginDate},
+	       </if>
+	       <if test="endDate!=''">
+	       		endDate=#{endDate},
+	       </if> 
+	       valid=#{valid},
+	       note=#{note}
+		where id=#{id}
+	</update>
+	<!-- 修改项目启用状态 -->
+	<update id="updateProject_valid">
+		update tms_projects set valid=#{valid} where id=#{id}
+	</update>
+	
+</mapper>

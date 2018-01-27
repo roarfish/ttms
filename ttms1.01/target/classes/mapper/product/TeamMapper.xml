@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.ttms.product.dao.TeamDao">
+	<sql id="condition">
+		<if test="projectId!=null and projectId!=''">
+			and t.projectId=#{projectId}
+		</if>
+		<if test="valid!=null and valid!=''">
+			and t.valid=#{valid}
+		</if>
+	</sql>
+
+	<!-- 查询全部团信息 -->
+	<select id="queryAllTeam" resultType="team">
+		select * from tms_teams
+	</select>
+	<!-- 分页查询 -->
+	<select id="queryTeamsByPage" resultType="team">
+		select t.*,p.name projectName from tms_teams t,tms_projects p 
+		where t.projectId=p.id 
+		<include refid="condition"/>
+		order by t.createdTime desc 
+		limit #{startIndex},#{pageSize}
+	</select>
+	<!-- 查询团信息数量 -->
+	<select id="queryTeamCount" resultType="java.lang.Integer">
+		select count(*) from tms_teams t
+		where 1=1
+		<include refid="condition"/>
+	</select>
+	<!-- 设置团启用状态 -->
+	<update id="updateValid">
+		update tms_teams set valid=#{valid} where id=#{id}
+	</update>
+	<!-- 根据id查找团信息 -->
+	<select id="queryTeamById" resultType="team">
+		select * from tms_teams where id=#{id}
+	</select>
+	<!-- 增加团信息 -->
+	<insert id="doSaveTeams" parameterType="team">
+		insert into tms_teams (
+			name,
+			projectId,
+			note,
+			valid
+		)
+		values(
+			#{name},
+			#{projectId},
+			#{note},
+			#{valid}
+		)
+	</insert>
+	<!-- 修改团信息 -->
+	<update id="doUpdateTeams" parameterType="team">
+		update tms_teams set
+			name=#{name},
+			projectId=#{projectId},
+			note=#{note},
+			valid=#{valid}
+		where id=#{id}
+	</update>
+</mapper>
