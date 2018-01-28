@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.tedu.ttms.common.web.PageObject;
 import cn.tedu.ttms.product.dao.ProjectDao;
@@ -19,6 +21,7 @@ import cn.tedu.ttms.product.service.TeamService;
  *
  */
 @Service
+@Transactional(propagation=Propagation.REQUIRED)
 public class TeamServiceImpl implements TeamService {
 	/**
 	 * 注入

@@ -7,7 +7,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import cn.tedu.ttms.common.exception.ServiceException;
 import cn.tedu.ttms.common.web.PageObject;
 import cn.tedu.ttms.product.dao.ProjectDao;
 import cn.tedu.ttms.product.entity.Project;
@@ -18,6 +21,7 @@ import cn.tedu.ttms.product.service.ProjectService;
  *
  */
 @Service
+@Transactional(propagation=Propagation.REQUIRED)
 public class ProjectServiceImpl implements ProjectService {
 	/**
 	 * 注入持久层

@@ -10,6 +10,8 @@ import javax.annotation.Resource;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +21,7 @@ import cn.tedu.ttms.attachment.service.AttachmentService;
 import cn.tedu.ttms.common.exception.ServiceException;
 
 @Service
+@Transactional(propagation=Propagation.REQUIRED)
 public class AttachmentServiceImpl implements AttachmentService {
 	
 	@Resource
