@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.tedu.ttms.common.web.JsonResult;
 /**通过此注解声明此类为一个全局异常处理类型*/
-//@ControllerAdvice
+@ControllerAdvice
 public class ControllerExceptionHandler {
 	/**当spring发现系统出现异常了,且异常的
 	 * 类型为ServiceException类型,此时就会
@@ -24,11 +24,11 @@ public class ControllerExceptionHandler {
 		//this.state=ERROR;
 		//this.message=e.getMessage();
 	}
-	//@ExceptionHandler(RuntimeException.class)
-	/*public ModelAndView  handleRuntimeException(RuntimeException e) {
+	@ExceptionHandler(RuntimeException.class)
+	public ModelAndView  handleRuntimeException(RuntimeException e) {
 		System.out.println("handleRuntimeException");
 		ModelAndView mv=new ModelAndView("error");
 		mv.addObject("exp", e.getMessage());
 		return mv;
-	}*/
+	}
 }
