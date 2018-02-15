@@ -6,15 +6,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import cn.tedu.ttms.product.dao.ProductTypeDao;
 import cn.tedu.ttms.product.entity.ProductType;
 import cn.tedu.ttms.product.service.ProductTypeService;
 
 @Service
-@Transactional(propagation=Propagation.REQUIRED)
 public class ProductTypeServiceImpl implements ProductTypeService {
 	
 	@Resource
