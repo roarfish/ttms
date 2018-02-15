@@ -1,4 +1,6 @@
 package cn.tedu.ttms.common.service.impl;
+import javax.annotation.Resource;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -9,16 +11,24 @@ import org.springframework.stereotype.Service;
 
 import cn.tedu.ttms.common.exception.ServiceException;
 import cn.tedu.ttms.common.service.SysShiroService;
+import cn.tedu.ttms.common.service.manager.TokenManager;
 import cn.tedu.ttms.system.dao.SysUserDao;
+import cn.tedu.ttms.system.entity.SysUser;
 @Service
 public class SysShiroServiceImpl  implements SysShiroService {
-	@Override
-	public void login(String username, String password) {
-		Subject subject = SecurityUtils.getSubject();
+	@Resource
+	private SysUserDao sysUserDao;
+	
+	public SysUser login(String username) {
+		
+		SysUser user=sysUserDao.findObjectByName(username);
+		return user;
+		
+		
+		/*Subject subject = SecurityUtils.getSubject();
 		if(subject.isAuthenticated())return;
 		// 把用户名和密码封装为 UsernamePasswordToken 对象
-        UsernamePasswordToken token = 
-        new UsernamePasswordToken(username, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try{//登录认证 - 调用userRealm
         	subject.login(token);
         }catch (IncorrectCredentialsException ice) {
@@ -26,6 +36,7 @@ public class SysShiroServiceImpl  implements SysShiroService {
         } catch(AuthenticationException ae){
         ae.printStackTrace();
         throw new ServiceException("认证失败");
-        }
+        }*/
 	}
+
 }

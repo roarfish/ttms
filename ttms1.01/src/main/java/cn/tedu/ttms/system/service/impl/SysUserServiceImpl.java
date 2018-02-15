@@ -88,7 +88,7 @@ public class SysUserServiceImpl implements SysUserService {
 		if(user==null)
 		throw new ServiceException("查询用户信息失败！");
 		List<Integer> roleIds = 
-		userRoleDao.findRoleIdsByUserId(userId);
+		userRoleDao.findRoleIdsByUserIds(userId);
 		if(roleIds==null||roleIds.size()==0)
 		throw new ServiceException("查询用户角色信息失败！");
 		Map<String,Object> map=new HashMap<String,Object>();

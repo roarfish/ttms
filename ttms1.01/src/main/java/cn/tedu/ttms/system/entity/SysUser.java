@@ -8,7 +8,7 @@ public class SysUser implements Serializable {
 	private static final long serialVersionUID = 1768931144633277198L;
 	private Integer id;
 	private String username;
-	private String password;
+	private transient String password;
 	private String email;
 	private String mobile;
 	private String salt;  //盐值
@@ -17,6 +17,16 @@ public class SysUser implements Serializable {
 	private String createdUser;
 	private String modifiedUser;
 	private Date modifiedTime;
+	
+	public SysUser(SysUser user){
+		this.id=user.getId();
+		this.username=user.getUsername();
+		this.password=user.getPassword();
+		this.email=user.getEmail();
+		this.createdTime=user.getCreatedTime();
+		this.valid=user.getValid();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
