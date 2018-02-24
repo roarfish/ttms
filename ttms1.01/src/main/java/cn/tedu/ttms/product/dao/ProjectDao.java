@@ -24,7 +24,7 @@ public interface ProjectDao {
 	 * @param pageSize 页面最大个数
 	 * @return
 	 */
-	List<Project> queryProjectByPage(
+	List<Object> queryProjectByPage(
 			@Param("name")String name,
 			@Param("valid")String valid,
 			@Param("startIndex")int startIndex,

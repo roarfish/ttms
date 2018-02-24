@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.tedu.ttms.common.exception.ServiceException;
+import cn.tedu.ttms.common.util.ServiceUtil;
 import cn.tedu.ttms.common.web.PageObject;
 import cn.tedu.ttms.system.dao.SysRoleDao;
 import cn.tedu.ttms.system.dao.SysUserDao;
@@ -29,26 +30,15 @@ public class SysUserServiceImpl implements SysUserService {
 	private SysRoleDao roleDao;
 	@Resource
 	private SysUserRoleDao userRoleDao;
-	@Override
-	public Map<String, Object> findPageObjects(String username, 
-			Integer pageCurrent) {
-		PageObject pageObject=new PageObject();
-		pageObject.setRowCount(userDao.getRowCount(username));	
-	    pageObject.setPageCurrent(pageCurrent);
-	    int pageSize=2;
-	    int startIndex=(pageCurrent-1)*pageSize;
-	    pageObject.setPageSize(2);
-	    pageObject.setStartIndex(startIndex);
-	    
-		List<SysUser> list = 
-		userDao.findPageObjects(username,startIndex,pageSize);
-		
-		Map<String,Object> map=new HashMap<>();
-		map.put("list", list);
-		map.put("pageObject",pageObject);
+	@Resource
+	private ServiceUtil util;
+	
+	public Map<String, Object> findPageObjects(String name,Integer pageCurrent) {
+		String dao="users";
+		Map<String,Object> map=util.queryPages(name, "", pageCurrent, dao);
 		return map;
 	}
-	@Override
+	
 	public List<Map<String, Object>> findSysRoles() {
 		List<Map<String, Object>> list = roleDao.findObjects();
 		if(list==null || list.size()==0){
@@ -58,7 +48,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	/** 保存用户信息，先保存用户，再保存用户角色关系*/
-	@Override
+	
 	public void saveObject(SysUser user,String roleIds) {
 		if(user==null){
 			throw new ServiceException("保存用户信息，用户对象不能为空！");
@@ -80,7 +70,7 @@ public class SysUserServiceImpl implements SysUserService {
 	
 	}
 	/** 根据id查询用户信息*/
-	@Override
+	
 	public Map<String,Object> findUserById(Integer userId) {
 		if(userId==null)
 		throw new ServiceException("用户id不能为空！");
@@ -88,7 +78,7 @@ public class SysUserServiceImpl implements SysUserService {
 		if(user==null)
 		throw new ServiceException("查询用户信息失败！");
 		List<Integer> roleIds = 
-		userRoleDao.findRoleIdsByUserIds(userId);
+		userRoleDao.findRoleIdsByUserId(userId);
 		if(roleIds==null||roleIds.size()==0)
 		throw new ServiceException("查询用户角色信息失败！");
 		Map<String,Object> map=new HashMap<String,Object>();
@@ -96,7 +86,7 @@ public class SysUserServiceImpl implements SysUserService {
 		map.put("user", user);
 		return map;
 	}
-	@Override
+	
 	public void updateObject(SysUser user,String roleIds) {
 		if(user==null)
 		throw new ServiceException("用户对象不能为空！");
@@ -118,7 +108,7 @@ public class SysUserServiceImpl implements SysUserService {
 		if(rows!=roleArrayIds.length)
 		throw new ServiceException("更新用户角色失败！");
 	}
-	@Override
+	
 	public void validById(Integer userId, Integer valid) {
 		if(userId==null)
 		throw new ServiceException("修改用户状态，用户id不能为空！");
@@ -129,14 +119,14 @@ public class SysUserServiceImpl implements SysUserService {
 		throw new ServiceException("切换用户启用禁用状态失败！");
 	}
 	/**查询用户得所有权限*/
-	@Override
+	
 	public List<String> findUserPermissions(Integer userId) {
 		if(userId==null)
 		throw new ServiceException("用户id不能为空！");
 		return userDao.findUserPermissions(userId);
 	}
 	/**查询用户菜单*/
-	@Override
+	
 	public List<Map<String, Object>> findUserMenus(Integer userId) {
 		if(userId==null)
 		throw new ServiceException("用户ID不能为空");

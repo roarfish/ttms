@@ -31,8 +31,7 @@ public class SysMenuController {
 	@RequestMapping("doFindObjects")
 	@ResponseBody
 	public JsonResult doFindObjects(){
-		List<Map<String, Object>> list =
-				menuService.findObjects();
+		List<Map<String, Object>> list = menuService.findObjects();
 		return new JsonResult(list);
 	}
 	
@@ -50,8 +49,7 @@ public class SysMenuController {
 	@RequestMapping("treeUI")
 	@ResponseBody
 	public JsonResult treeUI(){
-		List<Map<String, Object>> list =
-		menuService.findZtreeNodes();
+		List<Map<String, Object>> list = menuService.findZtreeNodes();
 		return new JsonResult(list);
 	}
 	
@@ -71,8 +69,7 @@ public class SysMenuController {
 	@RequestMapping("doFindObjectById")
 	@ResponseBody
 	public JsonResult doFindObjectById(Integer menuId){
-		Map<String, Object> map =
-		menuService.findMapById(menuId);
+		Map<String, Object> map = menuService.findMapById(menuId);
 		return new JsonResult(map);
 	}
 	

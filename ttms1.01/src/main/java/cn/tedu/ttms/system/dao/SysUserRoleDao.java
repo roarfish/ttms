@@ -7,12 +7,9 @@ import org.apache.ibatis.annotations.Param;
 
 public interface SysUserRoleDao {
 	int isUsedByUser(@Param("roleId")Integer roleId);
-	
-	int insertObject(@Param("userId")Integer userId,@Param("roleIds")String[] roleIds);
-	
+	int insertObject(@Param("userId")Integer userId,
+			@Param("roleIds")String[] roleIds);
 	int deleteUserRoles(Integer userId);
-	
-	Set<String> findRoleIdsByUserId(Integer userId);
-	
-	List<Integer> findRoleIdsByUserIds(Integer userId);
+	List<Integer> findRoleIdsByUserId(Integer userId);
+	int findUserIdByRoleId(Integer userId);
 }

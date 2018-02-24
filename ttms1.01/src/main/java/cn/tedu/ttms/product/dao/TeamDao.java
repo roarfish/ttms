@@ -25,7 +25,7 @@ public interface TeamDao {
 	 * @param pageCurrent
 	 * @return
 	 */
-	List<Team> queryTeamsByPage(
+	List<Object> queryTeamsByPage(
 			@Param("projectId") String projectId,
 			@Param("valid") String valid,
 			@Param("startIndex") int startIndex,

@@ -3,11 +3,6 @@ package cn.tedu.ttms.system.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 系统角色
- * @author zhoup
- *
- */
 public class SysRole implements Serializable {
 	private static final long serialVersionUID = -4947502179670638712L;
 	private Integer id;

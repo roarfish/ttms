@@ -7,7 +7,7 @@
 	<div class="page-header">
 		<div class="page-title" style="padding-bottom: 5px">
 			<ol class="breadcrumb">
-				<li class="active">添加角色</li>
+				<li class="active" id="editTitle"></li>
 			</ol>
 		</div>
 	</div>

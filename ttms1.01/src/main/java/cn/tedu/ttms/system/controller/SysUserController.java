@@ -30,8 +30,7 @@ public class SysUserController {
 	@RequestMapping("doFindObjects")
 	@ResponseBody
 	public JsonResult doFindObjects(String username,Integer pageCurrent){
-		Map<String, Object> map =
-		userService.findPageObjects(username, pageCurrent);
+		Map<String, Object> map = userService.findPageObjects(username, pageCurrent);
 		return new JsonResult(map);
 	}
 	
@@ -48,8 +47,7 @@ public class SysUserController {
 	@RequestMapping("doFindRoles")
 	@ResponseBody
 	public JsonResult doFindRoles(){
-		List<Map<String, Object>> list = 
-		userService.findSysRoles();
+		List<Map<String, Object>> list = userService.findSysRoles();
 		return new JsonResult(list);
 	}
 	
@@ -68,8 +66,7 @@ public class SysUserController {
 	@RequestMapping("doFindObjectById")
 	@ResponseBody
 	public JsonResult doFindObjectById(Integer userId){
-		Map<String, Object> map = 
-		userService.findUserById(userId);
+		Map<String, Object> map = userService.findUserById(userId);
 		//System.out.println("map="+map);
 		return new JsonResult(map);
 	}

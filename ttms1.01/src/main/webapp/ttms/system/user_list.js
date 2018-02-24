@@ -52,21 +52,21 @@ function getCheckedId(){
 
 //条件查询  -- 每次条件查询要将当前也设为1
 function doQueryObjects(){
-	$("#pageId").data('pageCurrent',1);
+	$("#pageId").data('pageCurrent',0);
 	doGetObjects();
 }
 function doGetObjects(){
 	var pageCurrent=$("#pageId").data("pageCurrent");
 	if(!pageCurrent){
-		pageCurrent=1;
+		pageCurrent=0;
 	}
 	var params = getQueryFormData();
 	params.pageCurrent=pageCurrent;
 	var url = 'user/doFindObjects.do';
 	$.post(url,params,function(result){
 		if(result.state==1){
-			setTableBodyRows(result.data.list);
-			setPagination(result.data.pageObject);
+			setTableBodyRows(result.data.List);
+			setPagination(result.data.Page);
 		}else{
 			alert(result.message);
 		}

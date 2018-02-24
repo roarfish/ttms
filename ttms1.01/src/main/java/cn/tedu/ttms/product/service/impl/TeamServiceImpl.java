@@ -7,7 +7,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import cn.tedu.ttms.common.util.ServiceUtil;
 import cn.tedu.ttms.common.web.PageObject;
 import cn.tedu.ttms.product.dao.ProjectDao;
 import cn.tedu.ttms.product.dao.TeamDao;
@@ -19,6 +22,7 @@ import cn.tedu.ttms.product.service.TeamService;
  *
  */
 @Service
+@Transactional(propagation=Propagation.REQUIRED)
 public class TeamServiceImpl implements TeamService {
 	/**
 	 * 注入
@@ -28,10 +32,13 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Resource
 	private ProjectDao prodao;
+	
+	@Resource
+	private ServiceUtil util;
 	/**
 	 * 全部团目信息
 	 */
-	@Override
+	
 	public List<Team> queryAllTeam() {
 		List<Team> list=dao.queryAllTeam();
 		return list;
@@ -39,9 +46,14 @@ public class TeamServiceImpl implements TeamService {
 	/**
 	 * 分页查询
 	 */
-	@Override
+	
 	public Map<String, Object> queryAllTeamsByPage(String projectId,String valid,int pageCurrent) {
-		PageObject pageobject=new PageObject();
+		
+		String dao="team";
+		Map<String,Object> map=util.queryPages(projectId, valid, pageCurrent,dao);
+		
+		
+		/*PageObject pageobject=new PageObject();
 		int startIndex=pageCurrent*pageobject.getPageSize();
 		int rowCount=dao.queryTeamCount(projectId,valid);
 		pageobject.setPageCurrent(pageCurrent);
@@ -50,41 +62,41 @@ public class TeamServiceImpl implements TeamService {
 		List<Team> list=dao.queryTeamsByPage(projectId,valid,startIndex, pageobject.getPageSize());
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("page", pageobject);
-		map.put("teamList", list);
+		map.put("teamList", list);*/
 		return map;
 	}
 	/**
 	 * 设置团启用状态
 	 */
-	@Override
+	
 	public void updateValid(int valid,String id) {
 		dao.updateValid(valid ,id);
 	}
 	/**
 	 * 新增团信息
 	 */
-	@Override
+	
 	public void saveTeams(Team team) {
 		dao.doSaveTeams(team);
 	}
 	/**
 	 * 修改团信息
 	 */
-	@Override
+	
 	public void updateTeams(Team team) {
 		dao.doUpdateTeams(team);
 	}
 	/**
 	 * 根据id查找团信息
 	 */
-	@Override
+	
 	public Team queryTeamById(int id) {
 		return dao.queryTeamById(id);
 	}
 	/**
 	 * 查询所有项目名
 	 */
-	@Override
+	
 	public List<Object> queryAllProjectsName() {
 		return prodao.queryAllProject();
 	}

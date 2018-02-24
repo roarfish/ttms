@@ -46,4 +46,5 @@ public interface ProjectService {
 	 * @param id
 	 */
 	void updateProject_valid(int valid, String id);
+	
 }

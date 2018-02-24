@@ -65,8 +65,8 @@ function doGetObjects(){
 	}
 	$.post(url,params,function(result){
 		if(result.state==1){
-			doSetTeamsTable(result.data.teamList);
-			setPagination(result.data.page);
+			doSetTeamsTable(result.data.List);
+			setPagination(result.data.Page);
 		}else{
 			alert(result.message)
 		}
@@ -77,6 +77,7 @@ function doGetObjects(){
 function doSetTeamsTable(data){
 	var tbody=$("#tbodyId");
 	tbody.empty();
+	doChoosePageAll(1)
 	for(var i in data){
 		var tr=$("<tr></tr>");
 		tr.append("<td><input type='checkbox' name='id' value="+data[i].id+"></td>");

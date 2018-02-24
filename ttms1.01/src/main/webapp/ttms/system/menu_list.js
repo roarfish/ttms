@@ -109,8 +109,7 @@ function doGetObjects() {
   /*获得选中的id值*/
   function getSelectedId(){
 	//1.1 获得选中的对象,默认返回值为一个对象数组
-	var selections=$("#menuTable")
-	.bootstrapTreeTable("getSelections");
+	var selections=$("#menuTable").bootstrapTreeTable("getSelections");
 	if(selections.length==0){
 	 return -1;//表示没选择任何对象
 	}

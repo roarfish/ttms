@@ -52,8 +52,8 @@ function showEditModal(){
 //设置模糊查询首页信息
 function doQueryObjects(){
 	$("#pageId").data("pageCurrent",0);
-	$(".first,.pre").hide();
-	$(".next,.last").show() ;
+	/*$(".first,.pre").hide();*/
+	/*$(".next,.last").show() ;*/
 	doGetObjects();
 }
 //执行分页查询
@@ -67,8 +67,8 @@ function doGetObjects(){
 	};
 	$.post(url,params,function(result){
 		if(result.state==1){
-			showList(result.data.projectList);
-			setPagination(result.data.page);
+			showList(result.data.List);
+			setPagination(result.data.Page);
 		}else{
 			alert(result.message);
 		}
@@ -78,6 +78,7 @@ function doGetObjects(){
 function showList(result){
 	var tbody=$("#tbodyId");
 	tbody.empty();
+	doChoosePageAll(1)
 	for(var i in result){
 		var tr=$("<tr></tr>");
 		tr.append('<td><input type="checkbox" name="id" value='+result[i].id+'></td>');
@@ -90,3 +91,4 @@ function showList(result){
 		tbody.append(tr);
 	}
 }
+

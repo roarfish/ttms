@@ -2,6 +2,7 @@ package cn.tedu.ttms.system.dao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import cn.tedu.ttms.common.dao.BaseDao;
 import cn.tedu.ttms.system.entity.SysMenu;
@@ -15,5 +16,5 @@ public interface SysMenuDao extends BaseDao<SysMenu> {
 	int hasChild(Integer menuId);
 	Map<String,Object> findMapById(Integer id);
 	int deleteObject(Integer id);
-
+	Set<String> queryPermissionByUserId(Integer userId);
 }

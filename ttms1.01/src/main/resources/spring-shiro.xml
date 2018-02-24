@@ -13,7 +13,8 @@
        http://www.springframework.org/schema/context 
        http://www.springframework.org/schema/context/spring-context.xsd">
        
-       <!-- shiro工厂bean配置 -->
+       <!-- ====================================shiro工厂bean配置===================================== -->
+       
        <bean id="ShiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         	<!-- shiro的核心安全接口 -->
        		<property name="securityManager" ref="securityManager"/>
@@ -39,13 +40,19 @@
          	</property>
        </bean>
        
-       <!-- 配置shiro安全管理器 -->
+       <!-- ====================================配置shiro安全管理器===================================== -->
+       
        <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
        		<!-- 自定义登录与授权 -->
        		<property name="realm" ref="shiroUserRealm"/>
+       		<!-- 缓存管理器(采用的redis) -->
+       		<property name="cacheManager" ref="customShiroCacheManager"/>
+       		<!-- 定义要使用的session管理器 -->
+       		<property name="sessionManager" ref="sessionManager"/>
        </bean>
        
-       <!-- 自定义的Realm -->
+       <!-- ====================================自定义Realm===================================== -->
+       
 	   <bean id="shiroUserRealm" class="cn.tedu.ttms.common.service.impl.ShiroUserRealm">
 	   		<!-- 配置凭证算法匹配器(加密算法) -->
 	   		<property name="credentialsMatcher">
@@ -55,8 +62,83 @@
 	   		</property>
 	   </bean>    
        
-       <!--Shiro生命周期处理器-->
+       <!-- ====================================配置redis缓存===================================== -->
+       
+       <!-- redis 的缓存 -->
+       <bean id="jedisManager" class="cn.tedu.ttms.common.cache.JedisManager">
+       		<property name="jedisPool" ref="jedisPool"/>
+       </bean>
+       
+       <!-- shiro 缓存实现 -->
+	   <bean id="jedisShiroCacheManager" class="cn.tedu.ttms.common.cache.impl.JedisShiroCacheManager">
+		    <property name="jedisManager" ref="jedisManager"/>
+	   </bean>
+	   
+	   <!-- 用户缓存 -->
+	   <bean id="customShiroCacheManager" class="cn.tedu.ttms.common.cache.impl.CustomShiroCacheManager">
+	   		<property name="shiroCacheManager" ref="jedisShiroCacheManager"/>
+	   </bean>
+	   
+	   <!-- ====================================配置Session会话管理===================================== -->
+	   
+	   <!-- 会话Session ID生成器 -->
+	   <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+	   
+	   <!-- session 创建、删除、查询 -->
+	   <bean id="jedisShiroSessionRepository" class="cn.tedu.ttms.common.cache.JedisShiroSessionRepository">
+	   		<property name="jedisManager" ref="jedisManager"/>
+	   </bean>
+	   
+	   <!-- 配置Session DAO的操作处理 -->
+       <bean id="customShiroSessionDAO" class="cn.tedu.ttms.common.dao.CustomShiroSessionDAO">
+	    	<property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
+	   		<property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+	   </bean>
+	   
+	  <!--  手动操作管理session -->
+	  <bean id="CustomSessionManager" class="cn.tedu.ttms.common.session.CustomSessionManager">
+	  		<property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
+	  		<property name="customShiroSessionDAO" ref="customShiroSessionDAO"/>
+	  </bean>
+	   
+	   <!-- 配置需要向Cookie中保存数据的配置模版 --> 
+	   <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+	   		<!-- 在Tomcat运行下默认使用的Cookie的名字为JSESSIONID -->
+	   		<constructor-arg value="mldn-session-id"/>
+	   		<!-- 保证该系统不会受到跨域的脚本操作供给 --> 
+	   		<property name="httpOnly" value="true"/>
+	   		<!-- 定义Cookie的过期时间，单位为秒，如果设置为-1表示浏览器关闭，则Cookie消失 --> 
+	   		<property name="maxAge" value="-1"/>
+	   </bean>
+	   
+	   <!-- 配置session的定时验证检测程序类，以让无效的session释放 -->
+	   <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+	   		<!-- 设置session的失效扫描间隔，单位为毫秒 -->
+	   		<property name="interval" value="100000"/>
+	   		<!-- 随后还需要定义有一个会话管理器的程序类的引用 -->
+        	<property name="sessionManager" ref="sessionManager"/>
+	   </bean>
+	   
+	   <!-- 定义会话管理器的操作 -->
+	   <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+	   		<!-- 定义的是全局的session会话超时时间，此操作会覆盖web.xml文件中的超时时间配置 -->
+        	<property name="globalSessionTimeout" value="1000000"/>
+	   		<!-- 删除所有无效的Session对象，此时的session被保存在了内存里面 -->
+        	<property name="deleteInvalidSessions" value="true"/>
+        	<!-- 定义要使用的无效的Session定时调度器 -->
+        	<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        	<!-- 需要让此session可以使用该定时调度器进行检测 -->
+        	<property name="sessionValidationSchedulerEnabled" value="true"/>
+        	<!-- 定义Session可以进行序列化的工具类 -->
+        	<property name="sessionDAO" ref="customShiroSessionDAO"/>
+	   		<!-- 所有的session一定要将id设置到Cookie之中，需要提供有Cookie的操作模版 -->
+        	<property name="sessionIdCookie" ref="sessionIdCookie"/>
+	   		<!-- 定义sessionIdCookie模版可以进行操作的启用 -->
+        	<property name="sessionIdCookieEnabled" value="true"/>
+	   </bean>
+	   
+       <!-- ====================================Shiro生命周期处理器===================================== -->
+       
 	   <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-       
-       
+	   
 </beans>

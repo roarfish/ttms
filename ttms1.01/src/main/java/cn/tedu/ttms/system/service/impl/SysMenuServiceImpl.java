@@ -18,15 +18,15 @@ import cn.tedu.ttms.system.service.SysMenuService;
 public class SysMenuServiceImpl implements SysMenuService{
 	@Resource
 	private SysMenuDao menuDao;
-	@Override
+	
 	public List<Map<String, Object>> findObjects() {
 		return menuDao.findObjects();
 	}
-	@Override
+	
 	public List<Map<String, Object>> findZtreeNodes() {
 		return menuDao.findZtreeNodes();
 	}
-	@Override
+	
 	public void saveObject(SysMenu entity) {
 		if(entity==null)
 		throw new ServiceException("添加菜单对象不能为空！");
@@ -34,7 +34,7 @@ public class SysMenuServiceImpl implements SysMenuService{
 		if(i!=1)
 		throw new ServiceException("添加菜单失败！");
 	}
-	@Override
+	
 	public Map<String, Object> findMapById(Integer menuId) {
 		if(menuId==null)
 		throw new ServiceException("菜单id能为空！");
@@ -45,7 +45,7 @@ public class SysMenuServiceImpl implements SysMenuService{
 		return map;
 	}
 
-	@Override
+	
 	public void updateObject(SysMenu entity) {
 		if(entity==null)
 		throw new ServiceException("修改菜单信息，菜单对象不能为空！");
@@ -53,7 +53,7 @@ public class SysMenuServiceImpl implements SysMenuService{
 		if(i!=1)
 		throw new ServiceException("更新菜单信息失败！");
 	}
-	@Override
+	
 	public void deleteObject(Integer menuId) {
 		if(menuId==null)
 		throw new ServiceException("删除菜单，菜单id不能为空！");

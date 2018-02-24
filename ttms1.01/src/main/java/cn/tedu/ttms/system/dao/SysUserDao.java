@@ -10,7 +10,7 @@ import cn.tedu.ttms.system.entity.SysUser;
 
 public interface SysUserDao extends BaseDao<SysUser> {
 
-	List<SysUser> findPageObjects(
+	List<Object> findPageObjects(
 			@Param("username")String username,
 			@Param("startIndex")Integer startIndex,
 			@Param("pageSize") Integer pageSize);

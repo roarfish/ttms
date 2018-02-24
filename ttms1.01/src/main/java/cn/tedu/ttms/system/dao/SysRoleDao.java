@@ -11,7 +11,7 @@ public interface SysRoleDao extends BaseDao<SysRole> {
 	/**获取所有角色信息*/
 	List<Map<String, Object>> findObjects();
 	/**分页获取所有角色信息*/
-	List<SysRole> findPageObjects(
+	List<Object> findPageObjects(
 			@Param("name")String name,
 			@Param("startIndex")int startIndex,
 			@Param("pageSize")int pageSize);

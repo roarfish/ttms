@@ -3,6 +3,7 @@
 <c:set var="basePath" value="${pageContext.request.contextPath}"></c:set>
 <script type="text/javascript" src="${basePath}/ttms/product/team_list.js"></script>
 <script type="text/javascript" src="${basePath}/ttms/common/page.js"></script>
+<script type="text/javascript" src="${basePath}/ttms/common/selectAll.js"></script>
 <script type="text/javascript" src="${basePath}/ttms/common/project_name.js"></script>
  <!-- 表单 -->
 	<div class="container">
@@ -16,6 +17,7 @@
 			<div class="page-stats"></div>
 		</div>
 		<form method="post" id="queryFormId">
+		
 		    <!-- 查询表单 -->
 			<div class="row page-search">
 			 <div class="col-md-12">
@@ -42,7 +44,7 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-						   <th>选择</th>
+						   <th><input type="checkbox" id="pageAll" />本页全选</th>
 							<th>团名称</th>
 							<th>所属项目</th>
 							<th>状态</th>

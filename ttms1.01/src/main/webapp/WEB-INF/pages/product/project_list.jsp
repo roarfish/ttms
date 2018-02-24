@@ -3,6 +3,7 @@
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="basePath" value="${pageContext.request.contextPath}"></c:set>
 <script type="text/javascript" src="${basePath}/ttms/common/page.js"></script>
+<script type="text/javascript" src="${basePath}/ttms/common/selectAll.js"></script>
 <script type="text/javascript" src="${basePath}/ttms/product/project_list.js"></script>
  <!-- 表单 -->
 	<div class="container">
@@ -40,7 +41,9 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-						   <th>选择</th>
+						    <th>
+						    	<input type="checkbox" id="pageAll" />本页全选
+						   	</th>
 							<th>项目编码</th>
 							<th>项目名称</th>
 							<th>开始时间</th>

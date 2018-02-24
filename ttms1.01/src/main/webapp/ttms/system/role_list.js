@@ -1,95 +1,96 @@
 $(document).ready(function(){
-	//条件查询
-	$('#formHead').on('click','.btn-search',doGetObjects)
-	//新增
-	$('#formHead').on('click','.btn-add',showAddUI)
-	//修改
-	$('#formHead').on('click','.btn-update',showEditUI)
-	//删除
-	$('#formHead').on('click','.btn-delete',deleteObject)
-	doGetObjects()
-})
-//删除角色
-function deleteObject(){
-	var checkedIds = getCheckedId();
-	if(!checkedIds){
-		alert('请选择要删除的选项！');
+	$(".btn-search").click(doQueryByCondition);
+	$("#formHead")
+	.on("click",".btn-add,.btn-update",doAddOrUpdateRole)
+	.on("click",".btn-delete",doDeleteRole)	
+	doGetObjects();
+});
+/**
+ * 新增或修改角色信息
+ */
+function doAddOrUpdateRole(){
+	$(".content").removeData("type");
+	if($(this).hasClass("btn-add")){
+		$(".content").data("type","");
+	}
+	if($(this).hasClass("btn-update")){
+		var id=getCheckId();
+		if(!id){
+			alert('请选择要操作的选项！');
+			return;
+		}
+		$(".content").data("type",id);
+	}
+	var url="role/editUI.do?t"+Math.random(1000);
+	$(".content").load(url);
+}
+/**
+ * 删除角色
+ */
+function doDeleteRole(){
+	var url="role/doDeleteRole.do";
+	var id=getCheckId();
+	if(!id){
+		alert('请选择要操作的选项！');
 		return;
 	}
-	var param = {'roleId':checkedIds};
-	var url = 'role/doDeleteObject.do';
-	$.post(url,param,function(result){
+	$.post(url,{id:id},function(result){
 		if(result.state==1){
-			alert('删除成功！');
 			doGetObjects();
+		}else{
+			alert(result.message)
+		}
+	})
+}
+
+function getCheckId(){
+	var id="";
+	var ids=$("#tbodyId").children().children().children("input[name='id']:checked");
+	ids.each(function(){
+		id=$(this).val();
+	})
+	return id;
+}
+/**
+ *条件查询
+ */
+function doQueryByCondition(){
+	$("#pageId").data("pageCurrent",0);
+	doGetObjects();
+}
+/**
+ * 分页查询
+ */
+function doGetObjects(){
+	var url="role/queryRolesByPages.do";
+	var pageCurrent=$("#pageId").data("pageCurrent");
+	var params={
+			name:$("#roleName").val(),
+			pageCurrent:pageCurrent==null ? 0 : pageCurrent 
+	}
+	$.post(url,params,function(result){
+		if(result.state==1){
+			doSetRoleTable(result.data.List);
+			setPagination(result.data.Page)
 		}else{
 			alert(result.message);
 		}
 	})
 }
-//显示修改角色页面
-function showEditUI(){
-	var checkecIds = getCheckedId();
-	if(!checkecIds){
-		alert('请选择要修改的选项！');
-		return;
+/**
+ * 设置表格
+ * @param data
+ */
+function doSetRoleTable(data){
+	var tbody=$("#tbodyId");
+	tbody.empty();
+	for(var i in data){
+		var tr=$("<tr></tr>");
+		var tds=$("<td><input type='radio'name='id' value='"+data[i].id+"'/></td>" +
+				  "<td>"+data[i].id+"</td>"+
+				  "<td>"+data[i].name+"</td>"+
+				  "<td>"+data[i].note+"</td>")
+		tr.append(tds)
+		tbody.append(tr)
 	}
-	$('.content').data('roleId',checkecIds);
-	$('.content').load('role/editUI.do');
-}
-//显示新增页面
-function showAddUI(){
-	var url = 'role/editUI.do';
-	$('.content').load(url);
-}
-function doGetObjects(){
-	var params = getQueryFormData();
-	var pageCurrent=$("#pageId").data("pageCurrent");
-	if(!pageCurrent)pageCurrent=1;
-	params.pageCurrent=pageCurrent;
-	var url = 'role/doFindObjects.do';
-	$.post(url,params,function(result){
-	 if(result.state==1){
-	 setTableBodyRows(result.data.list);
-	 setPagination(result.data.pageObject);
-	 }else{
-	  alert(result.message);
-	 }
-	})
-}
-
-//获取条件查询条件
-function getQueryFormData(){
-	var params = {'name':$('#roleName').val()}
-	return params;
-}
-
-//初始化列表页面
-function setTableBodyRows(list){
-	var tBody=$('#tbodyId');
-	tBody.empty();
-	var tds='<td><input type="radio" name="checkedItem" value="[id]"></td>'+
-	        '<td>[roleId]</td>'+
-	        '<td>[name]</td>'+
-	        '<td>[note]</td>';
-	for(var i in list){
-	    var tr=$('<tr></tr>');
-	    tr.append(tds.replace('[id]',list[i].id)
-	    		  .replace('[roleId]',list[i].id)
-	    		  .replace('[name]',list[i].name)
-	    		  .replace('[note]',list[i].note));
-	    
-	    tBody.append(tr);
-	}
-}
-
-//获得选中的id，然后拼接成字符串
-function getCheckedId(){
-	var checkedId;
-	$('tbody input[name="checkedItem"]').each(function(){
-		if($(this).is(':checked')){  //或者用prop('checked')
-			checkedId=$(this).val();
-		}
-	})
-	return checkedId;
 }
